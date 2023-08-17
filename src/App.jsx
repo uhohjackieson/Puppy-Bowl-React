@@ -1,12 +1,14 @@
 import { useState } from 'react'
 import './App.css'
-import { Link, Routes, Route } from "react-router-dom"
+import { Link, Routes, Route, useParams } from "react-router-dom"
 import AllPlayers from './components/AllPlayers'
 import SinglePlayer from './components/SinglePlayer'
 
 
 function App() {
   // const [count, setCount] = useState(0)
+  let { playerId } = useParams();
+
 
   return (
     <>
@@ -14,14 +16,14 @@ function App() {
       <div id="container">
       <div id="navbar">
         <h1>NavBar</h1>
-        <Link to="/allplayers">View All Players</Link>
-        <Link to="/singleplayer">Single Player</Link>
+        <Link to="/AllPlayers">View All Players</Link>
+        <Link to="/SinglePlayer">Single Player</Link>
       </div>
       
       <div>
         <Routes>
           <Route path="/AllPlayers" element={<AllPlayers />}/>
-          <Route path="/SinglePlayers" element={<SinglePlayer />}/>
+          <Route path="/SinglePlayer/{playerId}" element={<SinglePlayer />}/>
         </Routes>
       </div>
       </div>

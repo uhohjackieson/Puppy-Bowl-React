@@ -1,29 +1,27 @@
-// import { fetchAllPlayers } from "../API"
+import { fetchAllPlayers } from "../API"
 import { useState, useEffect} from "react"
+import SinglePlayer from "./SinglePlayer"
 // import React from "react"
 
 
-const PLAYERS_API_URL = "https://fsa-puppy-bowl.herokuapp.com/api/2306-GHP-ET-WEB-FT-SF/players"
 
 export default function AllPlayers() {
     const [players, setPlayers] = useState([])
-    useEffect(() => {
-        async function fetchAllPlayers () {
+    const [selectedPuppyId, setSelectedPuppyId] = useState(null)
+
+        async function fetchAllPuppies () {
     
             // fetch data from the API
             try{
-            const response = await fetch(PLAYERS_API_URL);
-        
-            // transform into json for use
-            const players = await response.json();
             
-            setPlayers(players.data.players)
+            setPlayers(await fetchAllPlayers())
         
             } catch(err) {
                 console.err("uh oh trouble fetching all players", err)
             }
         }
-        fetchAllPlayers();
+    useEffect(() => {
+        fetchAllPuppies();
         
         
     }, [])
@@ -39,6 +37,9 @@ export default function AllPlayers() {
                     <div key={player.id}>
                         <h4>{player.name}</h4>
                         <img src={player.imageUrl} alt={player.name}/>
+                        <SinglePlayer selectedPuppyId={player.id} setSelectedPuppyId={setSelectedPuppyId} />
+       
+                        
 
                     </div>
                 )
