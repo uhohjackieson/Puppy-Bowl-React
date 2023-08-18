@@ -12,7 +12,7 @@ export async function fetchAllPlayers () {
     return players.data.players;
 
     } catch(err) {
-        console.err("uh oh trouble fetching all players", err)
+        console.error("uh oh trouble fetching all players", err)
     }
 }
 
@@ -29,7 +29,7 @@ export async function fetchSinglePlayer (playerId) {
  
 
     } catch(err) {
-        console.err("uh oh trouble fetching single player", err);
+        console.error("uh oh trouble fetching single player", err);
     }
 }
 
